@@ -1,4 +1,4 @@
-# Generates pagecount growth/trend report from Google Analytics Data API and GA4
+# Generates pagecount growth/trend report from Google Analytics Data API v1 and GA4 Property
 
 [Google Analytics](https://analytics.google.com/) makes it easy to view your page counts for an arbitrary date range, but what is more difficult is comparing these results to an older window of data to see:
 
@@ -9,9 +9,9 @@ The [GA4PageGrowth.py3](GA4PageGrowth.py3) script gathers the latest window of G
 
 This can help you fine-tune your content creation, and invest in content that is showing the largest potential.
 
-# Google Analytics GA4 is future model (UA turned off June 2023)
+# Google Analytics GA4 is future model (UA deprecated)
 
-This script uses the latest [Google Analytics Data API v1](https://developers.google.com/analytics/devguides/reporting/data/v1) (GA4 using propertyId) data source, and not the deprecated [Google Analytics Reporting API v4](https://developers.google.com/analytics/devguides/reporting/core/v4) (UA using viewId), which is scheduled to be turned off in June 2023.
+This script uses the latest [Google Analytics Data API v1](https://developers.google.com/analytics/devguides/reporting/data/v1) (GA4 using propertyId) data source, and not the deprecated [Google Analytics Reporting API v4](https://developers.google.com/analytics/devguides/reporting/core/v4) (UA using viewId), which is deprecated and scheduled to be turned off in June 2023.
 
 The Python [Analytics Data API](https://googleapis.dev/python/analyticsdata/latest/index.html) client library is used for GA4 data access.
 
@@ -69,7 +69,3 @@ pip3 install -r requirements.txt
 * https://www.oncrawl.com/technical-seo/forecast-search-traffic-python-ga4/
 * https://practicaldatascience.co.uk/data-science/how-to-query-the-google-analytics-data-api-for-ga4-with-python
 * https://github.com/tanyazyabkina/GA4_API_python/blob/main/GA4%20Python%20Report.ipynb
-
-* https://itheo.tech/get-google-analytics-pageviews-with-python
-* https://medium.com/@tmmylo1021/extract-google-analytics-data-with-python-221626ed8975
-* https://www.byperth.com/2017/06/11/google-analytics-api-python/
