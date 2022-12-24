@@ -1,4 +1,4 @@
-# Generates pagecount growth/trend report from Google Analytics Data API v1 and GA4 Property
+# Page growth/trend report from Google Analytics Data API v1 and GA4 Property
 
 [Google Analytics](https://analytics.google.com/) makes it easy to view your page counts for an arbitrary date range, but what is more difficult is comparing these results to an older window of data to see:
 
