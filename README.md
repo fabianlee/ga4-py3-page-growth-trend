@@ -9,7 +9,7 @@ The [GA4PageGrowth.py3](GA4PageGrowth.py3) script gathers the latest window of G
 
 This can help you fine-tune your content creation, and invest in content that is showing the largest potential.
 
-If you would rather use pandas DataFrame to analyze this data instead of raw dictionaries, see my other github project [ga4-pandas-py3-page-growth-trend](https://github.com/fabianlee/ga4-pandas-py3-page-growth-trend)
+If you would rather use pandas DataFrame to analyze this data instead of raw Python dictionaries, then see my other github project [ga4-pandas-py3-page-growth-trend](https://github.com/fabianlee/ga4-pandas-py3-page-growth-trend) which uses gapandas4 to load, filter, analyze using [Pandas DataFrame](https://www.geeksforgeeks.org/python-pandas-dataframe/)
 
 # Google Analytics GA4 is future model (UA deprecated)
 
@@ -38,8 +38,8 @@ The Python [Analytics Data API](https://googleapis.dev/python/analyticsdata/late
 sudo apt-get update
 sudo apt-get install software-properties-common python3 python3-dev python3-pip python3-venv curl git -y
 
-git clone https://github.com/fabianlee/google-analytics-py3-page-growth-trend-report.git
-cd google-analytics-py3-page-growth-trend-report
+git clone https://github.com/fabianlee/ga4-py3-page-growth-trend.git
+cd ga4-py3-page-growth-trend
 
 # create virtual env for isolated libs
 python3 -m venv .
