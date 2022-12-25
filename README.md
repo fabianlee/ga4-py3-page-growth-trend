@@ -9,6 +9,8 @@ The [GA4PageGrowth.py3](GA4PageGrowth.py3) script gathers the latest window of G
 
 This can help you fine-tune your content creation, and invest in content that is showing the largest potential.
 
+If you would rather use pandas DataFrame to analyze this data instead of raw dictionaries, see my other github project [ga4-pandas-py3-page-growth-trend](https://github.com/fabianlee/ga4-pandas-py3-page-growth-trend)
+
 # Google Analytics GA4 is future model (UA deprecated)
 
 This script uses the latest [Google Analytics Data API v1](https://developers.google.com/analytics/devguides/reporting/data/v1) (GA4 using propertyId) data source, and not the deprecated [Google Analytics Reporting API v4](https://developers.google.com/analytics/devguides/reporting/core/v4) (UA using viewId), which is scheduled to be turned off in June 2023.
