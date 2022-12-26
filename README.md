@@ -9,7 +9,7 @@ The [GA4PageGrowth.py3](GA4PageGrowth.py3) script uses the Google Analytics Data
 
 * Query a window of GA4 data (default=today-30daysAgo), create a dict of path->pageCount
 * Query the preceding window of GA4 data (default=30daysAgo-60daysAgo), create a dict of path->pageCount
-* Iterate through dictionary and calculate delta of page counts between new and old datasets
+* Calculate delta of page counts between new and old datasets, put into dict path->delta, path->delta%
 * Sort by page counts, show biggest absolute winners/losers
 * Sorty by delta percent changes, show biggest trending winners/losers
 
