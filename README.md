@@ -5,7 +5,13 @@
 * Which pages have grown/lost in absolute counts
 * Which pages are trending growth/loss in terms of their percent (up-and-comers)
 
-The [GA4PageGrowth.py3](GA4PageGrowth.py3) script gathers the latest window of GA4 data (default=30 days), and compares it to the 30 days preceding it to show you which pages have grown/lost in absolute terms as well as percent.
+The [GA4PageGrowth.py3](GA4PageGrowth.py3) script uses the Google Analytics Data API v1 to:
+
+* Query a window of GA4 data (default=today-30daysAgo), create a dict of path->pageCount
+* Query the preceding window of GA4 data (default=30daysAgo-60daysAgo), create a dict of path->pageCount
+* Iterate through dictionary and calculate delta of page counts between new and old datasets
+* Sort by page counts, show biggest absolute winners/losers
+* Sorty by delta percent changes, show biggest trending winners/losers
 
 This can help you fine-tune your content creation, and invest in content that is showing the largest potential.
 
