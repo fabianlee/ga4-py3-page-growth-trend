@@ -23,6 +23,8 @@ from google.analytics.data_v1beta.types import (
     Metric,
     OrderBy,
     RunReportRequest,
+    FilterExpression,
+    Filter
 )
 
 
@@ -46,14 +48,57 @@ def initialize_ga4_analyticsreporting(jsonKeyFilePath):
   return client
 
 
+def build_filter_expression():
+  """The Data API v1 can filter data during query, use this to exclude pagePath we do not want to consider"""
+
+  # FILTER EXAMPLE#1: simple filter to show only pagePath containing 'kubernetes'
+#  wp_pagefilter=FilterExpression(
+#      filter=Filter(field_name="pagePath",string_filter=Filter.StringFilter(match_type=Filter.StringFilter.MatchType.CONTAINS,value="kubernetes"))
+#    )
+
+  # FILTER EXAMPLE#2: OR filter to show pagePath containing 'kubernetes' OR 'gke'
+#  wp_pagefilter=FilterExpression()
+#  for to_include in ["kubernetes","gke"]:
+#    wp_pagefilter.or_group.expressions.append(FilterExpression(
+#        filter=Filter(
+#          field_name="pagePath",
+#          string_filter=Filter.StringFilter(
+#            match_type=Filter.StringFilter.MatchType.CONTAINS,
+#            value=to_include
+#          )
+#      )
+#    ))
+
+  # FILTER EXAMPLE#3: exludes multiple wordpress special paths using NOT and AND
+  wp_pagefilter=FilterExpression()
+  for to_exclude in ["/category","/tag/","/page/"]:
+    wp_pagefilter.and_group.expressions.append(FilterExpression(
+      not_expression=FilterExpression(
+        filter=Filter(
+          field_name="pagePath",
+          string_filter=Filter.StringFilter(
+            match_type=Filter.StringFilter.MatchType.BEGINS_WITH,
+            value=to_exclude
+          )
+        )
+      )
+    ))
+
+  return wp_pagefilter
+
+
 def get_unique_pagecount_report(client,property_id,startDateStr,endDateStr):
     """Runs a report on a Google Analytics GA4 property."""
+
+    # filter for Data API v1
+    wp_pagefilter = build_filter_expression()
 
     request = RunReportRequest(
         property=f"properties/{property_id}",
         dimensions=[Dimension(name="pagePath")],
         metrics=[Metric(name="activeUsers")],
         date_ranges=[DateRange(start_date=startDateStr, end_date=endDateStr)],
+        dimension_filter=wp_pagefilter,
         order_bys=[ OrderBy(metric = {'metric_name': 'activeUsers'}, desc = False) ]
     )
     response = client.run_report(request)
@@ -67,13 +112,11 @@ def build_pagecount_dict(response):
   for row in response.rows:
     pageCount=row.metric_values[0].value
     path=row.dimension_values[0].value
-    #print(f"{pageCount},{path}")
+
+    # need to remove date only paths from wordpress (e.g. /2022/08/30/)
     valid_path = not(
       "?" in path or  
       "&" in path or  
-      "/category/" in path or  
-      "/page/" in path or  
-      "/tag/" in path or
       len(path) < 16 # eliminates spam requests and ones pointing to just dates
       )
     if valid_path:
@@ -130,6 +173,8 @@ def main():
   for path in pagecounts_latest:
     try:
       count_latest = pagecounts_latest[path]
+
+      # if older count exists, then calculate delta and delta percent
       if path in pagecounts_older:
         count_older  = pagecounts_older[path]
 
@@ -138,7 +183,7 @@ def main():
         # calculate percent change in terms of total count
         delta_percent = float(delta)/float(count_latest)
 
-        # save results
+        # save results for sorting later
         pagecounts_delta[path] = int(delta)
         pagecounts_delta_percent[path] = float(delta_percent)
         #print(f"{count_latest},{count_older},{delta},{delta_percent},{path}")
