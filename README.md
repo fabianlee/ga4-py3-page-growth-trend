@@ -15,7 +15,7 @@ The [GA4PageGrowth.py3](GA4PageGrowth.py3) script uses the Google Analytics Data
 
 This can help you fine-tune your content creation, and invest in content that is showing the largest potential.
 
-If you would rather use [Pandas DataFrame](https://www.geeksforgeeks.org/python-pandas-dataframe/) to analyze this data instead of raw Python dictionaries, then see my other github project [ga4-pandas-py3-page-growth-trend](https://github.com/fabianlee/ga4-pandas-py3-page-growth-trend) which uses gapandas4 to load, filter, analyze using DataFrame.
+If you would rather use [Pandas DataFrame](https://www.geeksforgeeks.org/python-pandas-dataframe/) to analyze this data instead of raw Python dictionaries, then see my other github project [ga4-pandas-py3-page-growth-trend](https://github.com/fabianlee/ga4-pandas-py3-page-growth-trend) which uses gapandas4 to load, filter, analyze using DataFrame. And [ga4-pandas-py3-treemap](https://github.com/fabianlee/ga4-pandas-py3-treemap) which visualizes the data using a TreeMap.
 
 # Google Analytics GA4 is future model (UA deprecated)
 
